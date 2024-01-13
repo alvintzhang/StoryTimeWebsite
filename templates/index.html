@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Children's Story</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/background.jpg'); /* Path to your background image */
+            background-size: cover; /* Cover the entire page */
+            background-position: center; /* Center the image */
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            text-align: left;
+        }
+    </style>
+  <script>
+      function fetchNewStory() {
+          fetch('/get_new_story')
+              .then(response => response.json())
+              .then(data => {
+                  document.getElementById('story').innerHTML = data.story;
+              })
+              .catch(error => console.error('Error:', error));
+      }
+  </script>
+</head>
+<body>
+  <div class="container">
+      <h1>A Children's Story</h1>
+      <p id="story">{{ story }}</p>
+      <button onclick="fetchNewStory()">Get Another Story</button>
+  </div>
+  <footer>
+      <p>&copy; Made by Victor, Alvin, Misha, and Addis</p>
+  </footer>
+</body>
+</html>
